@@ -38,7 +38,10 @@ while z<=11749:
 		continue
 	else:
 		title=title.string
-	
+	#title不允许有/
+	if "/" in title:
+		title=re.sub('[/]', '', title)
+
 	#获取类型
 	typ=soup.find(attrs={'class':'path'})
 	if typ is None:
@@ -47,6 +50,10 @@ while z<=11749:
 	else:
 		typ=typ.find(attrs={'href':re.compile(r"/zhgjm//*")})
 		typ=typ.string
+	
+	#typ不允许有/
+	if "/" in typ:
+		typ=re.sub('[/]', '', title)
 	
 	#获取正文
 	body=soup.find(attrs={'class':'dream_detail'})
